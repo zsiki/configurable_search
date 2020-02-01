@@ -1,0 +1,4 @@
+./test
+./help
+./__pycache__
+plugin_upload.py
