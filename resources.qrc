@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/configurable_search" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
