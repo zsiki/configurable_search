@@ -41,6 +41,7 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         self.setupUi(self)
         self.plugin = plugin
         self.iface = plugin.iface
+        self.tr = plugin.tr
         self.canvas = plugin.iface.mapCanvas()
         self.doneButton.clicked.connect(self.closeDialog)
         self.stopButton.clicked.connect(self.killWorker)
@@ -49,11 +50,10 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         self.maxResults = 1500
         self.resultsTable.setColumnCount(4)
         self.resultsTable.setSortingEnabled(False)
-        self.resultsTable.setHorizontalHeaderLabels([plugin.tr('Value'),
-            plugin.tr('Layer'), plugin.tr('Field'), plugin.tr('Feature Id')])
+        self.resultsTable.setHorizontalHeaderLabels(self.plugin.headers)
         self.resultsTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
-        self.comparisonComboBox.addItems([plugin.tr('='), plugin.tr('contains'),
-            plugin.tr('begins with')])
+        self.comparisonComboBox.addItems(self.plugin.compTypes)
+        self.comparisonComboBox.setCurrentIndex(2)  # starts with ...
         self.searchTypeComboBox.addItems(plugin.searchTypes.keys())
         self.resultsTable.itemSelectionChanged.connect(self.select_feature)
 
@@ -92,11 +92,11 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         try:
             sstr = self.findStringEdit.text().strip()
         except:
-            self.showErrorMessage(self.plugin.tr('Invalid Search String'))
+            self.showErrorMessage(self.tr(u'Invalid Search String'))
             return
 
         if str == '':
-            self.showErrorMessage(self.plugin.tr('Search string is empty'))
+            self.showErrorMessage(self.tr(u'Search string is empty'))
             return
         # the vector layers that are to be searched
         self.vlayers = QgsProject.instance().mapLayersByName(searchL)
@@ -110,7 +110,7 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
                     break
         # layer found?
         if len(self.vlayers) == 0:
-            self.showErrorMessage(self.plugin.tr('There are no vector layers to search through'))
+            self.showErrorMessage(self.tr(u'There are no vector layers to search through'))
             return
         # vlayers contains the layers that we will search in
         self.searchButton.setEnabled(False)

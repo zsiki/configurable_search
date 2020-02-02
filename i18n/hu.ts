@@ -12,29 +12,82 @@
 <context>
     <name>ConfigurableSearch</name>
     <message>
-        <location filename="../configurable_search.py" line="191"/>
+        <location filename="../configurable_search.py" line="196"/>
         <source>&amp;Configurable search</source>
         <translation>Konfigurálható keresés</translation>
     </message>
     <message>
-        <location filename="../configurable_search.py" line="75"/>
+        <location filename="../configurable_search.py" line="81"/>
         <source>Missing file</source>
         <translation>Hiányzó fájl</translation>
     </message>
     <message>
-        <location filename="../configurable_search.py" line="75"/>
+        <location filename="../configurable_search.py" line="81"/>
         <source>Config file not found: {}</source>
         <translation>A konfigurációs fájl nem találom: {}</translation>
     </message>
     <message>
-        <location filename="../configurable_search.py" line="81"/>
+        <location filename="../configurable_search.py" line="87"/>
         <source>Config file is not valid: {}</source>
         <translation>Hibás konfiguráció fájl: {}</translation>
     </message>
     <message>
-        <location filename="../configurable_search.py" line="182"/>
+        <location filename="../configurable_search.py" line="188"/>
         <source>Search</source>
         <translation>Keresés</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search.py" line="65"/>
+        <source>Value</source>
+        <translation>Érték</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search.py" line="65"/>
+        <source>Layer</source>
+        <translation>Réteg</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search.py" line="66"/>
+        <source>Field</source>
+        <translation>Mező</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search.py" line="66"/>
+        <source>Feature Id</source>
+        <translation>Elem ID</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search.py" line="68"/>
+        <source>=</source>
+        <translation>Teljes egyezés</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search.py" line="68"/>
+        <source>contains</source>
+        <translation>Tartalmazza</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search.py" line="69"/>
+        <source>begins with</source>
+        <translation>Ezzel kezdődik</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigurableSearchDialog</name>
+    <message>
+        <location filename="../configurable_search_dialog.py" line="112"/>
+        <source>There are no vector layers to search through</source>
+        <translation>Nincs keresendő vektor réteg</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search_dialog.py" line="94"/>
+        <source>Invalid Search String</source>
+        <translation>Hiba a keresett szövegben</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search_dialog.py" line="98"/>
+        <source>Search string is empty</source>
+        <translation>Keresett szöveg üres</translation>
     </message>
 </context>
 <context>
@@ -78,52 +131,6 @@
         <location filename="../configurable_search_dialog_base.ui" line="111"/>
         <source>Exit</source>
         <translation>Kilép</translation>
-    </message>
-</context>
-<context>
-    <name>plugin</name>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="52"/>
-        <source>Value</source>
-        <translation>Érték</translation>
-    </message>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="52"/>
-        <source>Layer</source>
-        <translation>Réteg</translation>
-    </message>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="52"/>
-        <source>Field</source>
-        <translation>Mező</translation>
-    </message>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="52"/>
-        <source>Feature Id</source>
-        <translation>Elem ID</translation>
-    </message>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="55"/>
-        <source>=</source>
-        <translation>Teljes egyezés</translation>
-    </message>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="55"/>
-        <source>contains</source>
-        <translation>Tartalmazza</translation>
-    </message>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="55"/>
-        <source>begins with</source>
-        <translation>Ezzel kezdődik</translation>
-    </message>
-</context>
-<context>
-    <name>self.plugin</name>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="104"/>
-        <source>There are no vector layers to search through</source>
-        <translation>Nincs keresendő vektor réteg</translation>
     </message>
 </context>
 </TS>

@@ -61,7 +61,12 @@ class ConfigurableSearch:
         # Declare instance attributes
         self.actions = []
         self.menu = self.tr(u'&Configurable search')
-
+        # table headers
+        self.headers = [self.tr(u'Value'), self.tr(u'Layer'),
+            self.tr(u'Field'), self.tr(u'Feature Id')]
+        # comparision types
+        self.compTypes = [self.tr(u'='), self.tr(u'contains'),
+            self.tr(u'begins with')]
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
         self.first_start = None
@@ -181,7 +186,6 @@ class ConfigurableSearch:
         icon_path = ':/plugins/configurable_search/icon.png'
         self.add_action(icon_path, text=self.tr(u'Search'), callback=self.run,
             parent=self.iface.mainWindow())
-
         # will be set False in run()
         self.first_start = True
 
