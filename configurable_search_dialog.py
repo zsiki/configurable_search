@@ -104,7 +104,6 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
             # find layer by path
             for lay in self.iface.mapCanvas().layers():
                 lp = lay.dataProvider().dataSourceUri().split('|')[0]
-                print(lp)
                 if lp == searchP:
                     self.vlayers.append(lay)
                     break
