@@ -99,12 +99,16 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
             self.showErrorMessage(self.tr(u'Search string is empty'))
             return
         # the vector layers that are to be searched
-        self.vlayers = QgsProject.instance().mapLayersByName(searchL)
+        self.vlayers = []
+        for l in searchL:
+            ll = QgsProject.instance().mapLayersByName(l)
+            for lll in ll:
+                self.vlayers.append(lll)
         if len(self.vlayers) == 0:
             # find layer by path
             for lay in self.iface.mapCanvas().layers():
                 lp = lay.dataProvider().dataSourceUri().split('|')[0]
-                if lp == searchP:
+                if lp in searchP:
                     self.vlayers.append(lay)
                     break
         # layer found?

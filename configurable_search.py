@@ -49,7 +49,10 @@ class ConfigurableSearch:
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
         # initialize locale
-        locale = QSettings().value('locale/userLocale')[0:2]
+        try:
+            locale = QSettings().value('locale/userLocale')[0:2]
+        except:
+            locale = hu
         locale_path = os.path.join(self.plugin_dir, 'i18n',
             '{}.qm'.format(locale))
 
@@ -94,10 +97,11 @@ class ConfigurableSearch:
             if section == "base":
                 base_dir = parser[section].get('dir', self.plugin_dir)
             elif section.startswith("search_group"):
+                ll = [l.strip() for l in parser[section]['layer'].split(',')]
+                lp = [os.path.join(base_dir, p.strip())
+                    for p in parser[section]['path'].split(',')]
                 sConf[parser[section]['name']] = [
-                    parser[section]['layer'], 
-                    os.path.join(base_dir, parser[section]['path']),
-                    parser[section]['field']]
+                    ll, lp, parser[section]['field']]
         return sConf
 
     # noinspection PyMethodMayBeStatic
