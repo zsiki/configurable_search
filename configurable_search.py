@@ -23,7 +23,7 @@
 """
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction
+from qgis.PyQt.QtWidgets import QAction, QMessageBox
 from qgis.core import Qgis
 
 # Initialize Qt resources from file resources.py
@@ -74,18 +74,17 @@ class ConfigurableSearch:
         # Must be set in initGui() to survive plugin reloads
         self.first_start = None
         # load search configuration
-        self.searchTypes = self.config()
+        self.searchTypes = self.config(os.path.join(self.plugin_dir, "default.cfg"))
  
-    def config(self, name='default.cfg'):
+    def config(self, path):
         """ load and parse config file """
         parser = configparser.ConfigParser()
-        path = os.path.join(self.plugin_dir, name)
         if not os.path.exists(path):
             QMessageBox.warning(None, self.tr("Missing file"),
                 self.tr("Config file not found: {}").format(path))
             return {}
         try:
-            parser.read(os.path.join(self.plugin_dir, name))
+            parser.read(path)
         except:
             self.iface.messageBar().pushMessage("", 
                 self.tr("Config file is not valid: {}").format(path),
@@ -94,6 +93,8 @@ class ConfigurableSearch:
         sConf = {}
         base_dir = ""
         for section in parser.sections():
+            if section == "include":
+                return self.config(parser[section]['path'])
             if section == "base":
                 base_dir = parser[section].get('dir', self.plugin_dir)
             elif section.startswith("search_group"):
