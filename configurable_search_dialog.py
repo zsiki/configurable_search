@@ -86,7 +86,7 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         searchL = self.plugin.searchTypes[searchT][0]
         searchP = self.plugin.searchTypes[searchT][1]
         selectedField = self.plugin.searchTypes[searchT][2]
-        infield = True  # TODO
+        infield = selectedField != "*"
         comparisonMode = self.comparisonComboBox.currentIndex()
         self.noSelection = True
         try:
@@ -95,7 +95,7 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
             self.showErrorMessage(self.tr(u'Invalid Search String'))
             return
 
-        if str == '':
+        if sstr == '':
             self.showErrorMessage(self.tr(u'Search string is empty'))
             return
         # the vector layers that are to be searched
@@ -160,8 +160,11 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
     def killWorker(self):
         '''This is initiated when the user presses the Stop button
         and will stop the search process'''
-        if self.worker is not None:
-            self.worker.kill()
+        try:
+            if self.worker is not None:
+                self.worker.kill()
+        except:
+            pass
 
     def clearResults(self):
         '''Clear all the search results.'''
