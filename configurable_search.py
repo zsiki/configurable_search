@@ -99,7 +99,8 @@ class ConfigurableSearch:
                 base_dir = parser[section].get('dir', self.plugin_dir)
             elif section.startswith("search_group"):
                 ll = [l.strip() for l in parser[section]['layer'].split(',')]
-                lp = [os.path.join(base_dir, p.strip())
+                # join is wrong on windows \\ inserted while a the provider returns path with /
+                lp = [base_dir+'/'+ p.strip()
                     for p in parser[section]['path'].split(',')]
                 sConf[parser[section]['name']] = [
                     ll, lp, parser[section]['field']]
