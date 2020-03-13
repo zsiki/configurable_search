@@ -83,9 +83,8 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
     def runSearch(self):
         '''Called when the user pushes the Search button'''
         searchT = str(self.searchTypeComboBox.currentText())
-        searchL = self.plugin.searchTypes[searchT][0]
-        searchP = self.plugin.searchTypes[searchT][1]
-        selectedField = self.plugin.searchTypes[searchT][2]
+        searchP = self.plugin.searchTypes[searchT][0]
+        selectedField = self.plugin.searchTypes[searchT][1]
         infield = selectedField != "*"
         comparisonMode = self.comparisonComboBox.currentIndex()
         self.noSelection = True
@@ -100,20 +99,15 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
             return
         # the vector layers that are to be searched
         self.vlayers = []
-        for l in searchL:
-            ll = QgsProject.instance().mapLayersByName(l)
-            for lll in ll:
-                self.vlayers.append(lll)
+        # find layer by path
+        for lay in self.iface.mapCanvas().layers():
+            lp = lay.dataProvider().dataSourceUri().split('|')[0]
+            if lp in searchP:
+                self.vlayers.append(lay)
+                break
+        # layers found?
         if len(self.vlayers) == 0:
-            # find layer by path
-            for lay in self.iface.mapCanvas().layers():
-                lp = lay.dataProvider().dataSourceUri().split('|')[0]
-                if lp in searchP:
-                    self.vlayers.append(lay)
-                    break
-        # layer found?
-        if len(self.vlayers) == 0:
-            self.showErrorMessage(self.tr(u'There are no vector layers to search through'))
+            self.showErrorMessage(self.tr(u'There are no open/visible vector layers to search through'))
             return
         # vlayers contains the layers that we will search in
         self.searchButton.setEnabled(False)

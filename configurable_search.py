@@ -96,14 +96,15 @@ class ConfigurableSearch:
             if section == "include":
                 return self.config(parser[section]['path'])
             if section == "base":
-                base_dir = parser[section].get('dir', self.plugin_dir)
+                base_dir = parser[section].get('dir', self.plugin_dir).replace('\\', '/')
+                if not base_dir.endswith('/'):
+                    base_dir += '/'        # add trailing /
             elif section.startswith("search_group"):
-                ll = [l.strip() for l in parser[section]['layer'].split(',')]
                 # join is wrong on windows \\ inserted while a the provider returns path with /
-                lp = [base_dir+'/'+ p.strip()
+                lp = [base_dir + p.strip().replace('\\', '/')
                     for p in parser[section]['path'].split(',')]
                 sConf[parser[section]['name']] = [
-                    ll, lp, parser[section]['field']]
+                    lp, parser[section]['field']]
         return sConf
 
     # noinspection PyMethodMayBeStatic
