@@ -31,7 +31,11 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="findStringEdit"/>
+          <widget class="QLineEdit" name="findStringEdit">
+           <property name="toolTip">
+            <string>Enter string to search for</string>
+           </property>
+          </widget>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_2">
@@ -41,17 +45,25 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QComboBox" name="searchTypeComboBox"/>
+          <widget class="QComboBox" name="searchTypeComboBox">
+           <property name="toolTip">
+            <string>Select column to search in</string>
+           </property>
+          </widget>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Comparison</string>
+            <string>Comparision</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QComboBox" name="comparisonComboBox"/>
+          <widget class="QComboBox" name="comparisonComboBox">
+           <property name="toolTip">
+            <string>Select comparision type</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -60,7 +72,11 @@
     </layout>
    </item>
    <item>
-    <widget class="QTableWidget" name="resultsTable"/>
+    <widget class="QTableWidget" name="resultsTable">
+     <property name="toolTip">
+      <string/>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="resultsLabel">
@@ -85,7 +101,20 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="confButton">
+       <property name="toolTip">
+        <string>Load another configuration file</string>
+       </property>
+       <property name="text">
+        <string>Load conf...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="searchButton">
+       <property name="toolTip">
+        <string>Start search</string>
+       </property>
        <property name="text">
         <string>Search</string>
        </property>
@@ -93,6 +122,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="stopButton">
+       <property name="toolTip">
+        <string>Abort search</string>
+       </property>
        <property name="text">
         <string>Abort</string>
        </property>
@@ -100,6 +132,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="clearButton">
+       <property name="toolTip">
+        <string>Clear dialog</string>
+       </property>
        <property name="text">
         <string>Clear</string>
        </property>
@@ -107,6 +142,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="doneButton">
+       <property name="toolTip">
+        <string>Close dialog</string>
+       </property>
        <property name="text">
         <string>Exit</string>
        </property>

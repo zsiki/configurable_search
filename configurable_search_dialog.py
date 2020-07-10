@@ -47,6 +47,7 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         self.stopButton.clicked.connect(self.killWorker)
         self.searchButton.clicked.connect(self.runSearch)
         self.clearButton.clicked.connect(self.clearResults)
+        self.confButton.clicked.connect(self.loadConf)
         self.maxResults = 1500
         self.resultsTable.setColumnCount(4)
         self.resultsTable.setSortingEnabled(False)
@@ -181,3 +182,10 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
     def showErrorMessage(self, message):
         '''Display an error message.'''
         self.iface.messageBar().pushMessage("", message, level=Qgis.Warning, duration=2)
+
+    def loadConf(self):
+        qfd = QtWidgets.QFileDialog()
+        filt = self.plugin.tr("Config files(*.cfg)")
+        title = self.plugin.tr("Select config file to load")
+        f, _ = QtWidgets.QFileDialog.getOpenFileName(qfd, title, ".", filt)
+        self.plugin.newConfig(f)

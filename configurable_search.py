@@ -196,6 +196,13 @@ class ConfigurableSearch:
         # will be set False in run()
         self.first_start = True
 
+    def newConfig(self, f):
+        """ load new search config """
+        if len(f):
+           self.searchTypes = self.config(f)
+           self.dlg.searchTypeComboBox.clear()
+           self.dlg.searchTypeComboBox.addItems(self.searchTypes.keys()) 
+
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
