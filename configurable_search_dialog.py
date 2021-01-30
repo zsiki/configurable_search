@@ -109,6 +109,7 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         # layers found?
         if len(self.vlayers) == 0:
             self.showErrorMessage(self.tr(u'There are no open/visible vector layers to search through'))
+            self.showErrorMessage(self.tr(u'Add one of the following layers to your project: ' + str(searchP)))
             return
         # vlayers contains the layers that we will search in
         self.searchButton.setEnabled(False)
@@ -181,7 +182,7 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
 
     def showErrorMessage(self, message):
         '''Display an error message.'''
-        self.iface.messageBar().pushMessage("", message, level=Qgis.Warning, duration=2)
+        self.iface.messageBar().pushMessage("", message, level=Qgis.Warning, duration=5)
 
     def loadConf(self):
         qfd = QtWidgets.QFileDialog()
