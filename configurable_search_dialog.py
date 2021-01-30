@@ -109,7 +109,7 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         # layers found?
         if len(self.vlayers) == 0:
             self.showErrorMessage(self.tr(u'There are no open/visible vector layers to search through'))
-            self.showErrorMessage(self.tr(u'Add one of the following layers to your project: ' + str(searchP)))
+            self.showErrorMessage(self.tr(u'Add one of the following layer to your project: ') + str(searchP))
             return
         # vlayers contains the layers that we will search in
         self.searchButton.setEnabled(False)

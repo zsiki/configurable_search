@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="hu_HU">
+<!DOCTYPE TS><TS version="2.0" language="hu_HU" sourcelanguage="">
 <context>
     <name>ConfigurableSearch</name>
     <message>
@@ -80,6 +79,11 @@
         <location filename="../configurable_search_dialog.py" line="111"/>
         <source>There are no open/visible vector layers to search through</source>
         <translation>Nincs elérhető/látható vektor réteg a kereséshez</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search_dialog.py" line="112"/>
+        <source>Add one of the following layer to your project: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -173,12 +177,12 @@
 <context>
     <name>self.plugin</name>
     <message>
-        <location filename="../configurable_search_dialog.py" line="188"/>
+        <location filename="../configurable_search_dialog.py" line="189"/>
         <source>Config files(*.cfg)</source>
         <translation>Konfig. fájlok(*.cfg)</translation>
     </message>
     <message>
-        <location filename="../configurable_search_dialog.py" line="189"/>
+        <location filename="../configurable_search_dialog.py" line="190"/>
         <source>Select config file to load</source>
         <translation>Válaszd ki a betöltendő konfig. fájlt</translation>
     </message>
