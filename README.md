@@ -15,7 +15,7 @@ for all the following relative paths of data sets files.
 [search_group*n*]
 
 Where n is a number to make the group name unique. For the search you can define
-a *name* which will be visible in the UI. Tha *path* parameter is a comma 
+a *name* which will be visible in the UI. The *path* parameter is a comma 
 separated list of paths to the datasource to search.
 The *field* parameter defines the table column, all sources must have the same 
 column name to search in.
@@ -27,6 +27,25 @@ of the config file is not considered. This can be useful for a group of users
 using common projects/layers from a network drive. They can create a local 
 configuration to include a common configuration on a network drive. So a single 
 config can be administered centraly.
+
+##Sample configuration file
+
+```
+	[base]
+	dir = /home/siki/work
+	[search_group1]
+	name = HRSZ
+	path = full/parcels.tab,org/parcels.shp
+	field = parcel_id
+	[search_group2]
+	name = address
+	path = addr/address_points.shp
+	field = address
+	[search_group3]
+	name=annotations
+	path = full/anno.tab
+	field = txt
+```
 
 The sources of Search Layers plugin were used to create this plugin
 https://github.com/NationalSecurityAgency/qgis-searchlayers-plugin
