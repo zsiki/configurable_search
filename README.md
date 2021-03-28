@@ -75,8 +75,7 @@ If path is emmpty the layer with the group name will be searched.
     name=POI
     path=/home/user/shapes/pois.shp
     field=description
-
-
+```
 
 The sources of Search Layers plugin were used to create this plugin
 https://github.com/NationalSecurityAgency/qgis-searchlayers-plugin
