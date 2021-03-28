@@ -97,12 +97,12 @@ class ConfigurableSearch:
                 return self.config(parser[section]['path'])
             if section == "base":
                 base_dir = parser[section].get('dir', self.plugin_dir).replace('\\', '/')
-                if not base_dir.endswith('/'):
+                if len(base_dir) > 0 and not base_dir.endswith('/'):
                     base_dir += '/'        # add trailing /
             elif section.startswith("search_group"):
-                # join is wrong on windows \\ inserted while a the provider returns path with /
+                # join is wrong on windows \\ is inserted while a the provider returns path with /
                 lp = [base_dir + p.strip().replace('\\', '/')
-                    for p in parser[section]['path'].split(',')]
+                        for p in parser[section]['path'].split(',')]
                 sConf[parser[section]['name']] = [
                     lp, parser[section]['field']]
         return sConf

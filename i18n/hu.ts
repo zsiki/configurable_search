@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="hu_HU" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.1" language="hu_HU">
 <context>
     <name>ConfigurableSearch</name>
     <message>
@@ -83,7 +84,7 @@
     <message>
         <location filename="../configurable_search_dialog.py" line="112"/>
         <source>Add one of the following layer to your project: </source>
-        <translation type="unfinished"></translation>
+        <translation>Add hozzá a projekthez a következő réteget: </translation>
     </message>
 </context>
 <context>

@@ -100,10 +100,10 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
             return
         # the vector layers that are to be searched
         self.vlayers = []
-        # find layer by path
+        # find layer by path or name
         for lay in self.iface.mapCanvas().layers():
             lp = lay.dataProvider().dataSourceUri().split('|')[0]
-            if lp in searchP:
+            if lp in searchP or lay.name() in searchP or searchT == lay.name():
                 self.vlayers.append(lay)
                 break
         # layers found?
