@@ -21,6 +21,8 @@
  *                                                                         *
  ***************************************************************************/
 """
+import os.path
+import configparser
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QMessageBox
@@ -30,8 +32,8 @@ from qgis.core import Qgis
 from .resources import *
 # Import the code for the dialog
 from .configurable_search_dialog import ConfigurableSearchDialog
-import os.path
-import configparser
+
+DEFAULT_CONFIG = "L:/xxii/search.cfg"
 
 class ConfigurableSearch:
     """QGIS Plugin Implementation."""
@@ -51,7 +53,7 @@ class ConfigurableSearch:
         # initialize locale
         try:
             locale = QSettings().value('locale/userLocale')[0:2]
-        except:
+        except Exception:
             locale = "hu"
         locale_path = os.path.join(self.plugin_dir, 'i18n',
             '{}.qm'.format(locale))
@@ -74,8 +76,11 @@ class ConfigurableSearch:
         # Must be set in initGui() to survive plugin reloads
         self.first_start = None
         # load search configuration
-        self.searchTypes = self.config(os.path.join(self.plugin_dir, "default.cfg"))
- 
+        if os.path.exists(DEFAULT_CONFIG):
+            self.searchTypes = self.config(DEFAULT_CONFIG)
+        else:
+            self.searchTypes = self.config(os.path.join(self.plugin_dir, "default.cfg"))
+
     def config(self, path):
         """ load and parse config file """
         parser = configparser.ConfigParser()
@@ -85,8 +90,8 @@ class ConfigurableSearch:
             return {}
         try:
             parser.read(path)
-        except:
-            self.iface.messageBar().pushMessage("", 
+        except Exception:
+            self.iface.messageBar().pushMessage("",
                 self.tr("Config file is not valid: {}").format(path),
                 level=Qgis.Critical, duration=4)
             return {}
@@ -105,6 +110,10 @@ class ConfigurableSearch:
                         for p in parser[section]['path'].split(',')]
                 sConf[parser[section]['name']] = [
                     lp, parser[section]['field']]
+        if len(sConf) < 1:
+            QMessageBox.warning(None, self.tr("Empty config"),
+                self.tr("Empty config file: {}").format(path))
+            return {}
         return sConf
 
     # noinspection PyMethodMayBeStatic
@@ -201,7 +210,7 @@ class ConfigurableSearch:
         if len(f):
            self.searchTypes = self.config(f)
            self.dlg.searchTypeComboBox.clear()
-           self.dlg.searchTypeComboBox.addItems(self.searchTypes.keys()) 
+           self.dlg.searchTypeComboBox.addItems(self.searchTypes.keys())
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""

@@ -103,9 +103,8 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         # find layer by path or name
         for lay in self.iface.mapCanvas().layers():
             lp = lay.dataProvider().dataSourceUri().split('|')[0]
-            if lp in searchP or lay.name() in searchP or searchT == lay.name():
+            if lp in searchP or lay.name() in searchP:
                 self.vlayers.append(lay)
-                break
         # layers found?
         if len(self.vlayers) == 0:
             self.showErrorMessage(self.tr(u'There are no open/visible vector layers to search through'))
