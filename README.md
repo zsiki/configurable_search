@@ -5,23 +5,23 @@ Seach configurations are set in a configuration file. In the configuration file
 group of parameters can be given The default configuration, which is loaded 
 automatic when the plug-in loaded, is located in the folder of the plugin 
 (called default.cfg). Before you start using this plug-in, you have to customize
-that. There are three type of available groups in configuration file.
+that. There are three types of available groups in configuration file.
 
 [base]
 
 There is only one parameter for this group *dir* which is a base directory 
 for all the following relative paths of data sets files.
-*dir* can be empty in that case full pathes have to be given the search 
-groups and layer names in the QGIS project can also be used instead of 
-full path. 
+*dir* can be empty in that case full paths have to be given in the search 
+groups. 
 
 [search_group*n*]
 
 Where n is a number to make the group name unique. For the search you can define
 a *name* which will be visible in the UI. The *path* parameter is a comma 
-separated list of paths to the datasource or layer names to search. If the
-*path* is empty the layer with the same name of the search group will be
-searched. You have to use layer name for database (e.g. PostGIS) layers.
+separated list of paths to the datasource or layer names to search. 
+The *layer* parameter is an alternative definition to define search layers
+by a comma separated list of layer names in QGIS.
+You have to use layer name for database (e.g. PostGIS) layers.
 The *field* parameter defines the table column, all sources must have the same 
 column name to search in.
 
@@ -46,7 +46,7 @@ Sample for file based layers (shp, tab).
 	field = parcel_id
 	[search_group2]
 	name = address
-	path = addr/address_points.shp
+	path = full/address_points.shp
 	field = address
 	[search_group3]
 	name=annotations
@@ -65,11 +65,10 @@ If path is emmpty the layer with the group name will be searched.
     dir=
     [search_group1]
     name=Street names
-    path=streets                
+    layer=streets
     field=name
     [searc_group2]
-    name=Address
-    path=
+    layer=Address
     field=addr
     [search_group2]
     name=POI
