@@ -6,7 +6,7 @@
 name=Configurable search
 qgisMinimumVersion=3.0
 description=Attribute search based on config file
-version=0.3
+version=0.4
 author=Zoltan Siki
 email=siki1958@gmail.com
 
@@ -20,7 +20,7 @@ repository=https://github.com/zsiki/configurable_search
 
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
-# changelog=
+changelog=search layer identified in config by name beside path
 
 # Tags are comma separated with spaces allowed
 tags=search, attribute

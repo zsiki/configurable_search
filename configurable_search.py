@@ -105,11 +105,16 @@ class ConfigurableSearch:
                 if len(base_dir) > 0 and not base_dir.endswith('/'):
                     base_dir += '/'        # add trailing /
             elif section.startswith("search_group"):
-                # join is wrong on windows \\ is inserted while a the provider returns path with /
-                lp = [base_dir + p.strip().replace('\\', '/')
-                        for p in parser[section]['path'].split(',')]
+                lp = []
+                if 'path' in parser[section]:
+                    # join is wrong on windows \\ is inserted while a the provider returns path with /
+                    lp = [base_dir + p.strip().replace('\\', '/')
+                            for p in parser[section]['path'].split(',')]
+                ln = []
+                if 'layer' in parser[section]:
+                    ln = parser[section]['layer'].split(',')
                 sConf[parser[section]['name']] = [
-                    lp, parser[section]['field']]
+                    lp, parser[section]['field'], ln]
         if len(sConf) < 1:
             QMessageBox.warning(None, self.tr("Empty config"),
                 self.tr("Empty config file: {}").format(path))

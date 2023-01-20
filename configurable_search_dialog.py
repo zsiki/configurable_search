@@ -86,6 +86,7 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         searchT = str(self.searchTypeComboBox.currentText())
         searchP = self.plugin.searchTypes[searchT][0]
         selectedField = self.plugin.searchTypes[searchT][1]
+        searchL = self.plugin.searchTypes[searchT][2]
         infield = selectedField != "*"
         comparisonMode = self.comparisonComboBox.currentIndex()
         self.noSelection = True
@@ -103,7 +104,7 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         # find layer by path or name
         for lay in self.iface.mapCanvas().layers():
             lp = lay.dataProvider().dataSourceUri().split('|')[0]
-            if lp in searchP or lay.name() in searchP:
+            if lp in searchP or lay.name() in searchL:
                 self.vlayers.append(lay)
         # layers found?
         if len(self.vlayers) == 0:
