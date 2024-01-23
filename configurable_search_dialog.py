@@ -22,8 +22,7 @@
  ***************************************************************************/
 """
 import os
-from qgis.core import QgsProject, QgsMapLayer, Qgis
-
+from qgis.core import QgsProject, QgsMapLayer, Qgis, QgsVectorLayer
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 from qgis.PyQt.QtCore import QThread
@@ -77,39 +76,54 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
         selectedRow = self.resultsTable.currentRow()
         selectedLayer = self.results[selectedRow][0]
         selectedFeature = self.results[selectedRow][1]
-        selectedLayer.select(selectedFeature.id())
-        # Zoom to the selected feature
-        self.canvas.zoomToSelected(selectedLayer)
+        if QgsProject.instance().layerTreeRoot().findLayer(selectedLayer.id()).isVisible():
+            selectedLayer.select(selectedFeature.id())
+            # Zoom to the selected feature
+            self.canvas.zoomToSelected(selectedLayer)
+        else:
+            # zoom to feature bounding box
+            f = selectedLayer.getFeature(selectedFeature.id())
+            bbox = f.geometry().boundingBox()
+            self.canvas.zoomToFeatureExtent(bbox)
 
     def runSearch(self):
         '''Called when the user pushes the Search button'''
-        searchT = str(self.searchTypeComboBox.currentText())
-        searchP = self.plugin.searchTypes[searchT][0]
-        selectedField = self.plugin.searchTypes[searchT][1]
-        searchL = self.plugin.searchTypes[searchT][2]
+        searchT = str(self.searchTypeComboBox.currentText()) # text to search
+        searchP = self.plugin.searchTypes[searchT][0]        # paths to search
+        selectedField = self.plugin.searchTypes[searchT][1]  # field to search
+        searchL = self.plugin.searchTypes[searchT][2]        # layer names to search
         infield = selectedField != "*"
         comparisonMode = self.comparisonComboBox.currentIndex()
         self.noSelection = True
         try:
             sstr = self.findStringEdit.text().strip()
         except:
-            self.showErrorMessage(self.tr(u'Invalid Search String'))
+            self.showErrorMessage(self.plugin.tr(u'Invalid Search String'))
             return
 
         if sstr == '':
-            self.showErrorMessage(self.tr(u'Search string is empty'))
+            self.showErrorMessage(self.plugin.tr(u'Search string is empty'))
             return
         # the vector layers that are to be searched
         self.vlayers = []
-        # find layer by path or name
-        for lay in self.iface.mapCanvas().layers():
-            lp = lay.dataProvider().dataSourceUri().split('|')[0]
-            if lp in searchP or lay.name() in searchL:
-                self.vlayers.append(lay)
+        if self.invisibleBox.isChecked():
+            # find invisible layers too
+            for k, lay in QgsProject.instance().mapLayers().items():
+                if isinstance(lay, QgsVectorLayer):
+                    lp = lay.dataProvider().dataSourceUri().split('|')[0]
+                    if lp in searchP or lay.name() in searchL:
+                        self.vlayers.append(lay)
+        else:
+            # find visible layer by path or name
+            for lay in self.iface.mapCanvas().layers():
+                if isinstance(lay, QgsVectorLayer):
+                    lp = lay.dataProvider().dataSourceUri().split('|')[0]
+                    if lp in searchP or lay.name() in searchL:
+                        self.vlayers.append(lay)
         # layers found?
         if len(self.vlayers) == 0:
-            self.showErrorMessage(self.tr(u'There are no open/visible vector layers to search through'))
-            self.showErrorMessage(self.tr(u'Add one of the following layer to your project: ') + str(searchP))
+            self.showErrorMessage(self.plugin.tr(u'There are no open/visible vector layers to search through'))
+            self.showErrorMessage(self.plugin.tr(u'Add one of the following layer to your project: ') + str(searchP))
             return
         # vlayers contains the layers that we will search in
         self.searchButton.setEnabled(False)
@@ -150,8 +164,8 @@ class ConfigurableSearchDialog(QtWidgets.QDialog, FORM_CLASS):
 
     def workerError(self, exception_string):
         '''An error occurred so display it.'''
-        #self.showErrorMessage(exception_string)
-        print(exception_string)
+        self.showErrorMessage(exception_string)
+        #print(exception_string)
 
     def killWorker(self):
         '''This is initiated when the user presses the Stop button

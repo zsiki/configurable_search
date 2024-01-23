@@ -4,7 +4,7 @@
 <context>
     <name>ConfigurableSearch</name>
     <message>
-        <location filename="../configurable_search.py" line="218"/>
+        <location filename="../configurable_search.py" line="223"/>
         <source>&amp;Configurable search</source>
         <translation>Konfigurálható keresés</translation>
     </message>
@@ -24,7 +24,7 @@
         <translation>Hibás konfiguráció fájl: {}</translation>
     </message>
     <message>
-        <location filename="../configurable_search.py" line="203"/>
+        <location filename="../configurable_search.py" line="208"/>
         <source>Search</source>
         <translation>Keresés</translation>
     </message>
@@ -64,37 +64,14 @@
         <translation>Ezzel kezdődik</translation>
     </message>
     <message>
-        <location filename="../configurable_search.py" line="114"/>
+        <location filename="../configurable_search.py" line="119"/>
         <source>Empty config</source>
         <translation>Üres konfiguráció</translation>
     </message>
     <message>
-        <location filename="../configurable_search.py" line="114"/>
+        <location filename="../configurable_search.py" line="119"/>
         <source>Empty config file: {}</source>
         <translation>Üres konfiguráció fájl: {}</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigurableSearchDialog</name>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="95"/>
-        <source>Invalid Search String</source>
-        <translation>Hiba a keresett szövegben</translation>
-    </message>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="99"/>
-        <source>Search string is empty</source>
-        <translation>Keresett szöveg üres</translation>
-    </message>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="110"/>
-        <source>There are no open/visible vector layers to search through</source>
-        <translation>Nincs elérhető/látható vektor réteg a kereséshez</translation>
-    </message>
-    <message>
-        <location filename="../configurable_search_dialog.py" line="111"/>
-        <source>Add one of the following layer to your project: </source>
-        <translation>Add hozzá a projekthez a következő réteget: </translation>
     </message>
 </context>
 <context>
@@ -115,17 +92,17 @@
         <translation>Keresés típus</translation>
     </message>
     <message>
-        <location filename="../configurable_search_dialog_base.ui" line="119"/>
+        <location filename="../configurable_search_dialog_base.ui" line="109"/>
         <source>Search</source>
         <translation>Keres</translation>
     </message>
     <message>
-        <location filename="../configurable_search_dialog_base.ui" line="129"/>
+        <location filename="../configurable_search_dialog_base.ui" line="119"/>
         <source>Abort</source>
         <translation>Megszakít</translation>
     </message>
     <message>
-        <location filename="../configurable_search_dialog_base.ui" line="139"/>
+        <location filename="../configurable_search_dialog_base.ui" line="129"/>
         <source>Clear</source>
         <translation>Töröl</translation>
     </message>
@@ -135,7 +112,7 @@
         <translation>Kilép</translation>
     </message>
     <message>
-        <location filename="../configurable_search_dialog_base.ui" line="109"/>
+        <location filename="../configurable_search_dialog_base.ui" line="139"/>
         <source>Load conf...</source>
         <translation>Konf. betölt</translation>
     </message>
@@ -160,22 +137,22 @@
         <translation>Válaszd ki az összehasonlítás típusát</translation>
     </message>
     <message>
-        <location filename="../configurable_search_dialog_base.ui" line="106"/>
+        <location filename="../configurable_search_dialog_base.ui" line="136"/>
         <source>Load another configuration file</source>
         <translation>Másik konfiguráció fájl betöltése</translation>
     </message>
     <message>
-        <location filename="../configurable_search_dialog_base.ui" line="116"/>
+        <location filename="../configurable_search_dialog_base.ui" line="106"/>
         <source>Start search</source>
         <translation>Keresés indítása</translation>
     </message>
     <message>
-        <location filename="../configurable_search_dialog_base.ui" line="126"/>
+        <location filename="../configurable_search_dialog_base.ui" line="116"/>
         <source>Abort search</source>
         <translation>Keresés megszakítása</translation>
     </message>
     <message>
-        <location filename="../configurable_search_dialog_base.ui" line="136"/>
+        <location filename="../configurable_search_dialog_base.ui" line="126"/>
         <source>Clear dialog</source>
         <translation>Ablak tartalmának törlése</translation>
     </message>
@@ -184,18 +161,43 @@
         <source>Close dialog</source>
         <translation>Ablak lezárása</translation>
     </message>
+    <message>
+        <location filename="../configurable_search_dialog_base.ui" line="84"/>
+        <source>Search on invisible layers</source>
+        <translation>Keresés a nem látható rétegeken is</translation>
+    </message>
 </context>
 <context>
     <name>self.plugin</name>
     <message>
-        <location filename="../configurable_search_dialog.py" line="188"/>
+        <location filename="../configurable_search_dialog.py" line="189"/>
         <source>Config files(*.cfg)</source>
         <translation>Konfig. fájlok(*.cfg)</translation>
     </message>
     <message>
-        <location filename="../configurable_search_dialog.py" line="189"/>
+        <location filename="../configurable_search_dialog.py" line="190"/>
         <source>Select config file to load</source>
         <translation>Válaszd ki a betöltendő konfig. fájlt</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search_dialog.py" line="96"/>
+        <source>Invalid Search String</source>
+        <translation>Hiba a keresett szövegben</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search_dialog.py" line="100"/>
+        <source>Search string is empty</source>
+        <translation>Keresett szöveg üres</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search_dialog.py" line="111"/>
+        <source>There are no open/visible vector layers to search through</source>
+        <translation>Nincs elérhető/látható vektor réteg a kereséshez</translation>
+    </message>
+    <message>
+        <location filename="../configurable_search_dialog.py" line="112"/>
+        <source>Add one of the following layer to your project: </source>
+        <translation>Add hozzá a projekthez a következő rétegek egyikét: </translation>
     </message>
 </context>
 </TS>
