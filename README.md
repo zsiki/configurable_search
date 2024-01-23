@@ -7,6 +7,9 @@ parameters are set in a configuration file.
 
 ![The user interface](ui.png)
 
+Double click in the search result list zooms on the selected feature (even if 
+it is on an invisible layer)
+
 Seach configurations are set in a configuration file. In the configuration file 
 group of parameters can be given The default configuration, which is loaded 
 automatic when the plug-in loaded, is located in the folder of the plugin 
