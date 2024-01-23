@@ -16,12 +16,13 @@ groups.
 
 [search_group*n*]
 
-Where n is a number to make the group name unique. For the search you can define
+Where *n* is a number to make the group name unique. For the search you can define
 a *name* which will be visible in the UI. The *path* parameter is a comma 
 separated list of paths to the datasource or layer names to search. 
 The *layer* parameter is an alternative definition to define search layers
 by a comma separated list of layer names in QGIS.
 You have to use layer name for database (e.g. PostGIS) layers.
+For file based vector layers both *path* and *layer* can be used.
 The *field* parameter defines the table column, all sources must have the same 
 column name to search in.
 
@@ -43,6 +44,7 @@ Sample for file based layers (shp, tab).
 	[search_group1]
 	name = HRSZ
 	path = full/parcels.tab,org/parcels.shp
+	layer = Parcel
 	field = parcel_id
 	[search_group2]
 	name = address
@@ -57,7 +59,7 @@ Sample for file based layers (shp, tab).
 ## 2nd Sample configuration file
 
 Sample using layer names of the QGIS project. It can be used for database
-layers. This case layer names or absolut pathes are given in path parameter.
+layers. This case layer names or absolut pathes are given in layer and path parameters respectively.
 If path is emmpty the layer with the group name will be searched.
 
 ```
