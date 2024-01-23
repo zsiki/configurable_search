@@ -1,5 +1,11 @@
-# configurable_search
+# configurable_search V0.5
+
 QGIS plugin for attribute search
+
+This plugin searches for multiple layers in a common column. Search
+parameters are set in a configuration file.
+
+![The user interface](ui.png)
 
 Seach configurations are set in a configuration file. In the configuration file 
 group of parameters can be given The default configuration, which is loaded 
@@ -20,11 +26,11 @@ Where *n* is a number to make the group name unique. For the search you can defi
 a *name* which will be visible in the UI. The *path* parameter is a comma 
 separated list of paths to the datasource or layer names to search. 
 The *layer* parameter is an alternative definition to define search layers
-by a comma separated list of layer names in QGIS.
+by a comma separated list of visible layer names in QGIS.
 You have to use layer name for database (e.g. PostGIS) layers.
 For file based vector layers both *path* and *layer* can be used.
 The *field* parameter defines the table column, all sources must have the same 
-column name to search in.
+column name to search in or you can use "*" to search all columns of the layer(s)
 
 [include]
 
@@ -66,16 +72,16 @@ If path is emmpty the layer with the group name will be searched.
     [base]
     dir=
     [search_group1]
-    name=Street names
-    layer=streets
-    field=name
+    name = Street names
+    layer = streets
+    field = name
     [searc_group2]
-    layer=Address
-    field=addr
+    layer = Address
+    field = addr
     [search_group2]
-    name=POI
-    path=/home/user/shapes/pois.shp
-    field=description
+    name = POI
+    path = /home/user/shapes/pois.shp
+    field = *
 ```
 
 The sources of Search Layers plugin were used to create this plugin
